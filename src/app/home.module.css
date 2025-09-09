@@ -1,0 +1,241 @@
+.container {
+  min-height: calc(100vh - 64px);
+  background: linear-gradient(135deg, #faf7f2 0%, #f1ede4 100%);
+}
+
+/* Hero Section */
+.heroSection {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 248, 240, 0.9) 0%,
+    rgba(251, 245, 235, 0.9) 100%
+  );
+}
+
+.heroImageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.heroImagePlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+}
+
+.heroImageText {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  width: 100%;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xl);
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroTitleAccent {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+
+.dueDateContainer {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg) var(--space-xl);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: inline-block;
+}
+
+.dueDateText {
+  font-size: var(--text-xl);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-xs) 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.dueDate {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Links Section */
+.linksSection {
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--white);
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.linkCard {
+  display: block;
+  text-decoration: none;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.linkCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary);
+}
+
+.linkIcon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.linkTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.linkDescription {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.adminCard {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border-color: #d1d5db;
+}
+
+.adminCard:hover {
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+}
+
+/* User Section */
+.userSection {
+  background: var(--bg-secondary);
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.userInfo {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.welcomeText {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.userRole {
+  font-weight: 600;
+  text-transform: capitalize;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.userRole.admin {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--success);
+}
+
+.userRole.family {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+}
+
+.userRole.friend {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroSection {
+    height: 60vh;
+    padding: var(--space-lg);
+  }
+  
+  .heroTitle {
+    margin-bottom: var(--space-lg);
+  }
+  
+  .dueDateContainer {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .linksSection {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  .linksGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .linkCard {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    height: 50vh;
+    padding: var(--space-md);
+  }
+  
+  .linkIcon {
+    font-size: 2rem;
+  }
+  
+  .linkCard {
+    padding: var(--space-md);
+  }
+}

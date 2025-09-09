@@ -1,95 +1,96 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { redirect } from 'next/navigation';
+import { getCurrentUser } from '@/lib/auth';
+import Link from 'next/link';
+import styles from './home.module.css';
 
-export default function Home() {
+export default async function HomePage() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div className={styles.container}>
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroImageContainer}>
+          <div className={styles.heroImagePlaceholder}>
+            <span className={styles.heroImageText}>Hero Photo Coming Soon</span>
+          </div>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            Courtney & Jack&apos;s<br />
+            <span className={styles.heroTitleAccent}>Little Logbook</span>
+          </h1>
+          
+          <div className={styles.dueDateContainer}>
+            <p className={styles.dueDateText}>Coming</p>
+            <p className={styles.dueDate}>February 12th</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Navigation Links Section */}
+      <section className={styles.linksSection}>
+        <div className={styles.linksGrid}>
+          <Link href="/faq" className={styles.linkCard}>
+            <div className={styles.linkIcon}>❓</div>
+            <h3 className={styles.linkTitle}>FAQ</h3>
+            <p className={styles.linkDescription}>
+              Frequently asked questions, visitation guidelines, and our goals for this journey
+            </p>
+          </Link>
+
+          <Link href="/gallery" className={styles.linkCard}>
+            <div className={styles.linkIcon}>📸</div>
+            <h3 className={styles.linkTitle}>Gallery</h3>
+            <p className={styles.linkDescription}>
+              Precious moments and milestones captured throughout our pregnancy journey
+            </p>
+          </Link>
+
+          <Link href="/help" className={styles.linkCard}>
+            <div className={styles.linkIcon}>🤝</div>
+            <h3 className={styles.linkTitle}>Help</h3>
+            <p className={styles.linkDescription}>
+              Ways you can support us during this special time and after baby arrives
+            </p>
+          </Link>
+
+          <Link href="/vault" className={styles.linkCard}>
+            <div className={styles.linkIcon}>💝</div>
+            <h3 className={styles.linkTitle}>Vault</h3>
+            <p className={styles.linkDescription}>
+              Memory vault for sharing advice, well wishes, and special messages
+            </p>
+          </Link>
+
+          {user.profile.role === 'admin' && (
+            <Link href="/admin" className={`${styles.linkCard} ${styles.adminCard}`}>
+              <div className={styles.linkIcon}>⚙️</div>
+              <h3 className={styles.linkTitle}>Admin</h3>
+              <p className={styles.linkDescription}>
+                Manage users, invite codes, and site settings
+              </p>
+            </Link>
+          )}
+        </div>
+      </section>
+
+      {/* User Info Section */}
+      <section className={styles.userSection}>
+        <div className={styles.userInfo}>
+          <p className={styles.welcomeText}>
+            Welcome back, {user.profile.display_name}! You&apos;re signed in as a{' '}
+            <span className={`${styles.userRole} ${styles[user.profile.role]}`}>
+              {user.profile.role}
+            </span>
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
