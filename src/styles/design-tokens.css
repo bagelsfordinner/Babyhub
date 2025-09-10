@@ -1,17 +1,67 @@
-/* Design System Utilities and Common Patterns */
+/* Forest-Cute Design System Utilities and Components */
 
-/* Component Base Classes */
+/* Forest-Cute Button Jelly */
+.button-jelly {
+  background: var(--secondary);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-xl);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: var(--s3) var(--s5);
+  box-shadow: var(--soft-shadow);
+  cursor: pointer;
+  transition: all 120ms ease-out;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+}
+
+.button-jelly:hover {
+  background: #86A76D;
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
+}
+
+.button-jelly:focus-visible {
+  outline: 3px dotted var(--info);
+  outline-offset: 2px;
+}
+
+.button-jelly:active {
+  transform: translateY(0);
+}
+
+/* Forest-Cute Card Softbox */
+.card-softbox {
+  background: var(--bg-primary);
+  background-image: var(--top-highlight);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-xl);
+  padding: var(--s5);
+  box-shadow: var(--soft-shadow);
+  position: relative;
+}
+
+.card-softbox:hover {
+  transform: translateY(-2px);
+  transition: transform 120ms ease-out;
+}
+
+/* Legacy card support */
 .card {
   background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--cocoa-outline);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--soft-shadow);
 }
 
 .card:hover {
-  box-shadow: var(--shadow-md);
-  transition: box-shadow 0.2s ease;
+  box-shadow: var(--elevated-shadow);
+  transition: box-shadow 120ms ease-out;
 }
 
 /* Role-based accent styles */
@@ -91,10 +141,59 @@
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Interactive states */
+/* Forest-Cute Input Cute */
+.input-cute {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-md);
+  padding: var(--s3) var(--s4);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--ink);
+  min-height: 44px;
+  transition: all 120ms ease-out;
+}
+
+.input-cute:focus {
+  outline: 3px dotted var(--info);
+  outline-offset: 2px;
+  border-color: var(--info);
+}
+
+/* Forest-Cute Chip Leaf */
+.chip-leaf {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  padding: var(--s2) var(--s4);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+}
+
+/* Forest-Cute Toast */
+.toast {
+  background: #FFF7E6;
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--s4) var(--s5);
+  box-shadow: var(--elevated-shadow);
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.toast-icon {
+  color: var(--mushcap);
+}
+
+/* Forest-Cute Interactive states */
 .interactive:hover {
-  transform: translateY(-1px);
-  transition: transform 0.2s ease;
+  transform: translateY(-2px);
+  transition: transform 120ms ease-out;
 }
 
 .interactive:active {
@@ -116,4 +215,109 @@
 @keyframes loading {
   0% { background-position: 200% 0; }
   100% { background-position: -200% 0; }
+}
+
+/* Forest-Cute Patterns & Ornaments */
+.polka-dots {
+  background-image: radial-gradient(circle at 50% 50%, var(--parchment) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.dotted-divider {
+  border: none;
+  border-top: 1.5px dotted var(--cocoa-outline);
+  margin: var(--s5) 0;
+}
+
+.scallop-border::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--cocoa-outline) 0px,
+    var(--cocoa-outline) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
+/* Forest-Cute Badge/Sticker */
+.sticker-badge {
+  background: var(--mushcap);
+  color: var(--ink);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--s2) var(--s3);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  transform: rotate(2deg);
+  box-shadow: var(--soft-shadow);
+  display: inline-block;
+  position: relative;
+}
+
+.sticker-badge::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background-image: var(--top-highlight);
+  border-radius: var(--radius-lg);
+  z-index: -1;
+}
+
+/* Forest-Cute Progress Ring */
+.progress-ring {
+  --progress: 0%;
+  background: conic-gradient(
+    var(--success) var(--progress),
+    var(--parchment) var(--progress)
+  );
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.progress-ring::after {
+  content: '';
+  background: var(--bg-primary);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+}
+
+/* Forest-Cute Semantic Button Variants */
+.button-primary {
+  background: var(--primary);
+  color: var(--primary-on);
+}
+
+.button-primary:hover {
+  background: var(--pine);
+}
+
+.button-success {
+  background: var(--success);
+  color: var(--primary-on);
+}
+
+.button-warning {
+  background: var(--warning);
+  color: var(--ink);
+}
+
+.button-danger {
+  background: var(--danger);
+  color: var(--primary-on);
 }

@@ -1,134 +1,122 @@
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
   display: grid;
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
   justify-items: center;
   min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+  padding: var(--s8);
+  gap: var(--s8);
+  font-family: var(--font-body);
+  background: var(--marsh-cream);
+  color: var(--ink);
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
+/* Forest-Cute doesn't use dark mode - always cozy forest theme */
 
 .main {
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--s6);
   grid-row-start: 2;
 }
 
 .main ol {
-  font-family: var(--font-geist-mono);
+  font-family: var(--font-body);
   padding-left: 0;
   margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
+  font-size: var(--text-caption);
+  line-height: 1.6;
+  letter-spacing: -0.1px;
   list-style-position: inside;
 }
 
 .main li:not(:last-of-type) {
-  margin-bottom: 8px;
+  margin-bottom: var(--s2);
 }
 
 .main code {
   font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  padding: var(--s1) var(--s2);
+  border-radius: var(--radius-sm);
   font-weight: 600;
+  color: var(--acorn);
 }
 
 .ctas {
   display: flex;
-  gap: 16px;
+  gap: var(--s4);
 }
 
 .ctas a {
   appearance: none;
-  border-radius: 128px;
+  border-radius: var(--radius-xl);
   height: 48px;
-  padding: 0 20px;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
+  padding: 0 var(--s5);
+  border: 1.5px solid var(--cocoa-outline);
+  transition: all 120ms ease-out;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  box-shadow: var(--soft-shadow);
 }
 
 a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
+  background: var(--primary);
+  color: var(--primary-on);
+  gap: var(--s2);
+}
+
+a.primary:hover {
+  background: var(--pine);
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
 }
 
 a.secondary {
-  border-color: var(--gray-alpha-200);
+  background: var(--secondary);
+  color: var(--ink);
   min-width: 158px;
+}
+
+a.secondary:hover {
+  background: #86A76D;
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
 }
 
 .footer {
   grid-row-start: 3;
   display: flex;
-  gap: 24px;
+  gap: var(--s5);
 }
 
 .footer a {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--s2);
+  color: var(--muted-text);
+  font-size: var(--text-caption);
+  transition: color 120ms ease-out;
+}
+
+.footer a:hover {
+  color: var(--primary);
 }
 
 .footer img {
   flex-shrink: 0;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-}
-
 @media (max-width: 600px) {
   .page {
-    padding: 32px;
-    padding-bottom: 80px;
+    padding: var(--s6);
+    padding-bottom: var(--s8);
   }
 
   .main {
@@ -144,9 +132,9 @@ a.secondary {
   }
 
   .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+    font-size: var(--text-caption);
+    height: 44px;
+    padding: 0 var(--s4);
   }
 
   a.secondary {
@@ -157,11 +145,5 @@ a.secondary {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
   }
 }

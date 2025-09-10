@@ -1,45 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@800&family=Nunito:wght@400;600&family=Caveat:wght@400&display=swap');
+
 :root {
-  /* Colors - Soft Pastel Theme */
-  --bg-primary: #FEFEFE;        /* Off-white background */
-  --bg-secondary: #F8F9FA;      /* Subtle card backgrounds */
-  --accent-family: #E8F4FD;     /* Light blue for family content */
-  --accent-friend: #FFF2E8;     /* Light peach for friend content */
-  --accent-admin: #F0F8F0;      /* Light green for admin tools */
-  --text-primary: #2D3748;      /* Soft dark gray */
-  --text-secondary: #718096;    /* Medium gray */
-  --border: #E2E8F0;            /* Light gray borders */
-  --success: #48BB78;           /* Soft green */
-  --warning: #ED8936;           /* Soft orange */
-  --error: #F56565;             /* Soft red */
-  --white: #FFFFFF;
+  /* Forest-Cute Color System - Enhanced Foresty Palette */
+  /* Deep Forest Surfaces */
+  --forest-floor: #E8DDD0;    /* Warmer than marsh-cream, no pure white */
+  --bark-light: #DDD2BD;      /* Warmer than parchment */
+  --moss-bed: #C8D4A3;        /* Soft green-brown surface */
+  --fern-whisper: #B8C99C;    /* Subtle green background */
+  
+  /* Text & Ink */
+  --ink: #2A1F1B;
+  --wood-char: #3D2D23;       /* Warmer dark brown */
+  --muted-text: #6E615A;
+  --cocoa-outline: #5B433A;
+  
+  /* Rich Forest Greens */
+  --pine-deep: #1A3525;       /* Deeper forest green */
+  --pine: #1E3A2A;
+  --moss-dark: #3E5A39;       /* Darker moss */
+  --moss: #4C6F47;
+  --fern-bright: #5BA050;     /* More vibrant green */
+  --fern: #66B55B;
+  --sage-soft: #8FAC72;      /* Softer sage */
+  --sage: #9DB87E;
+  --mint-forest: #A4C18A;     /* New light green */
+  
+  /* Warm Earth Tones */
+  --oak-bark: #8B6F47;        /* Rich brown */
+  --acorn-shell: #A67C52;     /* Warm brown */
+  --acorn: #7B5A3D;
+  --cedar: #9A7B5C;           /* New warm brown */
+  
+  /* Forest Accent Colors */
+  --mushcap: #E8894A;
+  --toadstool: #D5654A;
+  --berry-deep: #B845B8;      /* Deeper berry */
+  --berry-pop: #C956C9;
+  --autumn-gold: #D4A574;     /* New warm accent */
+  --sky-mist: #9CCBFF;
+  
+  /* Semantic Colors - More Forest-Themed */
+  --primary: var(--moss);
+  --primary-on: var(--forest-floor);  /* No pure white */
+  --secondary: var(--sage);
+  --success: var(--fern-bright);
+  --warning: var(--autumn-gold);
+  --danger: var(--toadstool);
+  --info: var(--sky-mist);
+  
+  /* Legacy mappings - Updated to eliminate white */
+  --bg-primary: var(--forest-floor);
+  --bg-secondary: var(--bark-light);
+  --accent-family: var(--mint-forest);
+  --accent-friend: var(--fern-whisper);
+  --accent-admin: var(--moss-bed);
+  --text-primary: var(--ink);
+  --text-secondary: var(--muted-text);
+  --border: var(--cocoa-outline);
+  --error: var(--danger);
+  --white: var(--forest-floor);  /* Eliminated pure white */
 
-  /* Spacing Scale */
-  --space-xs: 0.25rem;   /* 4px */
-  --space-sm: 0.5rem;    /* 8px */
-  --space-md: 1rem;      /* 16px */
-  --space-lg: 1.5rem;    /* 24px */
-  --space-xl: 2rem;      /* 32px */
-  --space-2xl: 3rem;     /* 48px */
+  /* Forest-Cute Spacing Scale */
+  --s0: 0;
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s8: 48px;
+  
+  /* Legacy spacing mappings */
+  --space-xs: var(--s1);
+  --space-sm: var(--s2);
+  --space-md: var(--s4);
+  --space-lg: var(--s5);
+  --space-xl: var(--s6);
+  --space-2xl: var(--s8);
 
+  /* Forest-Cute Typography */
+  --font-heading: 'Grandstander', system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, sans-serif;
+  --font-handwritten: 'Caveat', 'Comic Sans MS', cursive;
+  
   /* Typography Scale */
-  --text-xs: 0.75rem;    /* 12px */
-  --text-sm: 0.875rem;   /* 14px */
-  --text-base: 1rem;     /* 16px */
-  --text-lg: 1.125rem;   /* 18px */
-  --text-xl: 1.25rem;    /* 20px */
-  --text-2xl: 1.5rem;    /* 24px */
-  --text-3xl: 1.875rem;  /* 30px */
+  --text-h1: clamp(32px, 4.6vw, 56px);
+  --text-h2: clamp(24px, 3.6vw, 40px);
+  --text-h3: clamp(20px, 2.8vw, 28px);
+  --text-body: 18px;
+  --text-caption: 15px;
+  
+  /* Legacy typography mappings */
+  --text-xs: 12px;
+  --text-sm: var(--text-caption);
+  --text-base: var(--text-body);
+  --text-lg: var(--text-body);
+  --text-xl: 20px;
+  --text-2xl: var(--text-h3);
+  --text-3xl: var(--text-h2);
 
-  /* Border Radius */
-  --radius-sm: 0.25rem;  /* 4px */
-  --radius-md: 0.5rem;   /* 8px */
-  --radius-lg: 0.75rem;  /* 12px */
-  --radius-xl: 1rem;     /* 16px */
+  /* Forest-Cute Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  /* Forest-Cute Shadows & Highlights */
+  --soft-shadow: 0 2px 0 rgba(24,17,11,0.04), 0 10px 24px rgba(24,17,11,0.16);
+  --elevated-shadow: 0 4px 0 rgba(24,17,11,0.05), 0 16px 36px rgba(24,17,11,0.22);
+  --top-highlight: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0) 35%);
+  
+  /* Legacy shadow mappings */
+  --shadow-sm: var(--soft-shadow);
+  --shadow-md: var(--soft-shadow);
+  --shadow-lg: var(--elevated-shadow);
+
+  /* Forest-Cute Gradients */
+  --forest-dawn: linear-gradient(180deg, #9DB87E 0%, #F7F0E1 100%);
+  --canopy-fade: linear-gradient(180deg, #C9E6D2 0%, #F7F0E1 100%);
 
   /* Z-index Scale */
   --z-dropdown: 1000;
@@ -59,9 +138,7 @@
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -73,10 +150,27 @@ body {
   font-size: var(--text-base);
 }
 
-/* Focus Styles for Accessibility */
+/* Forest-Cute Focus Styles for Accessibility */
 :focus-visible {
-  outline: 2px solid var(--success);
+  outline: 3px dotted var(--info);
   outline-offset: 2px;
+}
+
+/* Forest-Cute Typography Base */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+h1 { font-size: var(--text-h1); }
+h2 { font-size: var(--text-h2); }
+h3 { font-size: var(--text-h3); }
+
+body {
+  font-weight: 400;
+  letter-spacing: -0.1px;
 }
 
 /* Utility Classes */

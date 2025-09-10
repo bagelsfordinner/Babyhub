@@ -2,16 +2,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-sm);
-  padding: var(--space-sm) var(--space-lg);
-  border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--text-base);
-  font-weight: 500;
+  gap: var(--s2);
+  padding: var(--s3) var(--s5);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-xl);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 120ms ease-out;
   text-decoration: none;
-  min-height: 40px;
+  min-height: 44px;
+  box-shadow: var(--soft-shadow);
 }
 
 .button:disabled {
@@ -19,56 +21,67 @@
   cursor: not-allowed;
 }
 
-/* Variants */
+/* Forest-Cute Button Variants */
 .primary {
-  background-color: var(--success);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--primary-on);
 }
 
 .primary:hover:not(:disabled) {
-  background-color: #38A169;
-  transform: translateY(-1px);
+  background: var(--pine);
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
+}
+
+.primary:focus-visible {
+  outline: 3px dotted var(--info);
+  outline-offset: 2px;
 }
 
 .secondary {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  border: 1px solid var(--border);
+  background: var(--secondary);
+  color: var(--ink);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--border);
-  transform: translateY(-1px);
+  background: #86A76D;
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
 }
 
 .outline {
-  background-color: transparent;
-  color: var(--success);
-  border: 1px solid var(--success);
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
 }
 
 .outline:hover:not(:disabled) {
-  background-color: var(--success);
-  color: var(--white);
+  background: var(--primary);
+  color: var(--primary-on);
 }
 
 .ghost {
-  background-color: transparent;
-  color: var(--text-primary);
+  background: transparent;
+  color: var(--ink);
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .ghost:hover:not(:disabled) {
-  background-color: var(--bg-secondary);
+  background: var(--parchment);
+  border-color: var(--cocoa-outline);
+  box-shadow: var(--soft-shadow);
 }
 
 .danger {
-  background-color: var(--error);
-  color: var(--white);
+  background: var(--danger);
+  color: var(--primary-on);
 }
 
 .danger:hover:not(:disabled) {
-  background-color: #E53E3E;
-  transform: translateY(-1px);
+  background: #A64A42;
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
 }
 
 /* Sizes */

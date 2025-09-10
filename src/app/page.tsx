@@ -1,6 +1,14 @@
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from '@/lib/auth';
 import Link from 'next/link';
+import { 
+  HelpCircle, 
+  Camera, 
+  Heart, 
+  Vault, 
+  Settings
+} from 'lucide-react';
+import { PageTransition } from '@/components/molecules/PageTransition';
 import styles from './home.module.css';
 
 export default async function HomePage() {
@@ -11,7 +19,8 @@ export default async function HomePage() {
   }
 
   return (
-    <div className={styles.container}>
+    <PageTransition>
+      <div className={styles.container}>
       {/* Hero Section */}
       <section className={styles.heroSection}>
         <div className={styles.heroImageContainer}>
@@ -37,7 +46,9 @@ export default async function HomePage() {
       <section className={styles.linksSection}>
         <div className={styles.linksGrid}>
           <Link href="/faq" className={styles.linkCard}>
-            <div className={styles.linkIcon}>❓</div>
+            <div className={styles.linkIcon}>
+              <HelpCircle size={32} />
+            </div>
             <h3 className={styles.linkTitle}>FAQ</h3>
             <p className={styles.linkDescription}>
               Frequently asked questions, visitation guidelines, and our goals for this journey
@@ -45,7 +56,9 @@ export default async function HomePage() {
           </Link>
 
           <Link href="/gallery" className={styles.linkCard}>
-            <div className={styles.linkIcon}>📸</div>
+            <div className={styles.linkIcon}>
+              <Camera size={32} />
+            </div>
             <h3 className={styles.linkTitle}>Gallery</h3>
             <p className={styles.linkDescription}>
               Precious moments and milestones captured throughout our pregnancy journey
@@ -53,7 +66,9 @@ export default async function HomePage() {
           </Link>
 
           <Link href="/help" className={styles.linkCard}>
-            <div className={styles.linkIcon}>🤝</div>
+            <div className={styles.linkIcon}>
+              <Heart size={32} />
+            </div>
             <h3 className={styles.linkTitle}>Help</h3>
             <p className={styles.linkDescription}>
               Ways you can support us during this special time and after baby arrives
@@ -61,7 +76,9 @@ export default async function HomePage() {
           </Link>
 
           <Link href="/vault" className={styles.linkCard}>
-            <div className={styles.linkIcon}>💝</div>
+            <div className={styles.linkIcon}>
+              <Vault size={32} />
+            </div>
             <h3 className={styles.linkTitle}>Vault</h3>
             <p className={styles.linkDescription}>
               Memory vault for sharing advice, well wishes, and special messages
@@ -70,7 +87,9 @@ export default async function HomePage() {
 
           {user.profile.role === 'admin' && (
             <Link href="/admin" className={`${styles.linkCard} ${styles.adminCard}`}>
-              <div className={styles.linkIcon}>⚙️</div>
+              <div className={styles.linkIcon}>
+                <Settings size={32} />
+              </div>
               <h3 className={styles.linkTitle}>Admin</h3>
               <p className={styles.linkDescription}>
                 Manage users, invite codes, and site settings
@@ -91,6 +110,7 @@ export default async function HomePage() {
           </p>
         </div>
       </section>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

@@ -4,8 +4,21 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { 
+  Users, 
+  UserPlus, 
+  Copy, 
+  Trash2, 
+  Clock, 
+  CheckCircle, 
+  AlertCircle,
+  Shield,
+  Heart,
+  UserCheck
+} from 'lucide-react';
 import { Button, Input, Avatar, Badge } from '@/components/atoms';
-import { getAllUsers, getAllInviteCodes, generateInviteCode, updateUserRole, deleteInviteCode } from '@/lib/admin';
+import { ForestLoader } from '@/components/atoms/ForestLoader';
+import { PageTransition } from '@/components/molecules/PageTransition';
 import type { UserRole, Profile, InviteCode } from '@/types';
 import styles from './UserManagement.module.css';
 
@@ -56,14 +69,24 @@ export function UserManagement() {
       setIsLoading(true);
       setError('');
       
+      const [usersResponse, invitesResponse] = await Promise.all([
+        fetch('/api/admin/users'),
+        fetch('/api/admin/invites'),
+      ]);
+      
+      if (!usersResponse.ok || !invitesResponse.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      
       const [usersData, invitesData] = await Promise.all([
-        getAllUsers(),
-        getAllInviteCodes(),
+        usersResponse.json(),
+        invitesResponse.json(),
       ]);
       
       setUsers(usersData);
       setInvites(invitesData);
     } catch (err) {
+      console.error('Admin data loading error:', err);
       setError('Failed to load data. Please refresh the page.');
     } finally {
       setIsLoading(false);
@@ -72,13 +95,25 @@ export function UserManagement() {
 
   const handleRoleChange = async (userId: string, newRole: UserRole) => {
     try {
-      await updateUserRole(userId, newRole);
+      const response = await fetch('/api/admin/users', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, role: newRole }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to update user role');
+      }
+      
       setUsers(users.map(user => 
         user.id === userId ? { ...user, role: newRole } : user
       ));
       setSuccess('User role updated successfully');
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
+      console.error('Role update error:', err);
       setError('Failed to update user role');
       setTimeout(() => setError(''), 3000);
     }
@@ -89,12 +124,28 @@ export function UserManagement() {
       setIsGenerating(true);
       setError('');
       
-      const newInvite = await generateInviteCode(data.role, data.expiresInDays);
+      const response = await fetch('/api/admin/invites', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          role: data.role,
+          expiresInDays: data.expiresInDays,
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to generate invite code');
+      }
+      
+      const newInvite = await response.json();
       setInvites([newInvite, ...invites]);
       setSuccess(`Invite code ${newInvite.code} created successfully`);
       reset();
       setTimeout(() => setSuccess(''), 5000);
     } catch (err) {
+      console.error('Invite generation error:', err);
       setError('Failed to generate invite code');
       setTimeout(() => setError(''), 3000);
     } finally {
@@ -120,11 +171,19 @@ export function UserManagement() {
     }
 
     try {
-      await deleteInviteCode(inviteId);
+      const response = await fetch(`/api/admin/invites?id=${inviteId}`, {
+        method: 'DELETE',
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to delete invite code');
+      }
+      
       setInvites(invites.filter(invite => invite.id !== inviteId));
       setSuccess('Invite code deleted successfully');
       setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
+      console.error('Invite deletion error:', err);
       setError('Failed to delete invite code');
       setTimeout(() => setError(''), 3000);
     }
@@ -149,18 +208,21 @@ export function UserManagement() {
 
   if (isLoading) {
     return (
-      <div className={styles.container}>
-        <div className={styles.loading}>Loading user management...</div>
-      </div>
+      <PageTransition>
+        <div className={styles.container}>
+          <ForestLoader size="lg" message="Loading user management..." />
+        </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>User Management</h1>
-        <p className={styles.subtitle}>Manage user roles and create invite codes</p>
-      </div>
+    <PageTransition>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>User Management</h1>
+          <p className={styles.subtitle}>Manage user roles and create invite codes</p>
+        </div>
 
       {error && <div className={styles.error}>{error}</div>}
       {success && <div className={styles.success}>{success}</div>}
@@ -168,7 +230,10 @@ export function UserManagement() {
       {/* Users Section */}
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Users ({users.length})</h2>
+          <h2 className={styles.sectionTitle}>
+            <Users size={20} />
+            Users ({users.length})
+          </h2>
         </div>
         <div className={styles.sectionContent}>
           {users.length === 0 ? (
@@ -213,7 +278,10 @@ export function UserManagement() {
       {/* Invite Codes Section */}
       <div className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h2 className={styles.sectionTitle}>Invite Codes</h2>
+          <h2 className={styles.sectionTitle}>
+            <UserPlus size={20} />
+            Invite Codes
+          </h2>
         </div>
         <div className={styles.sectionContent}>
           {/* Generate New Invite Form */}
@@ -275,8 +343,9 @@ export function UserManagement() {
                         </span>
                       )}
                       {isInviteExpired(invite.expires_at) && (
-                        <span className={styles.inviteDetail}>
-                          ⚠️ Expired
+                        <span className={`${styles.inviteDetail} ${styles.expired}`}>
+                          <AlertCircle size={14} />
+                          Expired
                         </span>
                       )}
                     </div>
@@ -287,6 +356,7 @@ export function UserManagement() {
                         onClick={() => handleCopyCode(invite.code)}
                         className={styles.copyButton}
                       >
+                        <Copy size={14} />
                         Copy Link
                       </button>
                     )}
@@ -295,6 +365,7 @@ export function UserManagement() {
                         onClick={() => handleDeleteInvite(invite.id, invite.code)}
                         className={styles.deleteButton}
                       >
+                        <Trash2 size={14} />
                         Delete
                       </button>
                     )}
@@ -305,6 +376,7 @@ export function UserManagement() {
           )}
         </div>
       </div>
-    </div>
+      </div>
+    </PageTransition>
   );
 }

@@ -1,7 +1,8 @@
 .header {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
+  background: var(--bg-primary);
+  background-image: var(--top-highlight);
+  border-bottom: 1.5px dotted var(--cocoa-outline);
+  box-shadow: var(--soft-shadow);
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
@@ -18,26 +19,30 @@
 }
 
 .logo {
+  font-family: var(--font-heading);
   font-size: var(--text-xl);
-  font-weight: 700;
-  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--ink);
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: var(--s2);
 }
 
 .logoIcon {
   width: 32px;
   height: 32px;
-  background: var(--success);
-  border-radius: 50%;
+  background: var(--primary);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--white);
+  color: var(--primary-on);
   font-size: var(--text-lg);
-  font-weight: 700;
+  font-weight: 800;
+  box-shadow: var(--soft-shadow);
 }
 
 /* Desktop Navigation */
@@ -57,23 +62,29 @@
 }
 
 .navLink {
-  color: var(--text-secondary);
+  color: var(--muted-text);
   text-decoration: none;
-  font-size: var(--text-base);
-  font-weight: 500;
-  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  padding: var(--s3) var(--s4);
   border-radius: var(--radius-md);
-  transition: all 0.2s ease;
+  transition: all 120ms ease-out;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .navLink:hover {
-  color: var(--text-primary);
-  background: var(--bg-secondary);
+  color: var(--ink);
+  background: var(--parchment);
+  transform: translateY(-2px);
 }
 
 .navLink.active {
-  color: var(--success);
+  color: var(--primary);
   background: var(--accent-admin);
+  border: 1.5px solid var(--cocoa-outline);
 }
 
 .userMenu {

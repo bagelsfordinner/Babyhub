@@ -1,0 +1,522 @@
+/* Forest-Cute Help Page - Bento Box Layout */
+
+.helpPage {
+  min-height: 100vh;
+  background: var(--marsh-cream);
+  padding: var(--s5) 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--s4);
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: var(--s8);
+}
+
+.pageHeader h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  margin-bottom: var(--s4);
+}
+
+.pageHeader p {
+  font-size: var(--text-body);
+  color: var(--muted-text);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Bento Grid Layout */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: var(--s5);
+  grid-template-areas: 
+    "registry registry registry guidelines guidelines guidelines progress progress progress progress progress progress"
+    "favorites favorites favorites favorites favorites favorites progress progress progress progress progress progress";
+}
+
+/* Individual Bento Boxes */
+.bentoBox {
+  background: var(--bg-primary);
+  background-image: var(--top-highlight);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-xl);
+  padding: var(--s6);
+  box-shadow: var(--soft-shadow);
+  transition: all 120ms ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.bentoBox:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
+}
+
+/* Box Headers */
+.boxHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s5);
+}
+
+.iconWrapper {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--s3);
+  box-shadow: var(--soft-shadow);
+}
+
+.icon {
+  font-size: 24px;
+  display: block;
+}
+
+.boxHeader h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h3);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.adminBadge {
+  background: var(--accent-admin);
+  color: var(--success);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-pill);
+  padding: var(--s1) var(--s3);
+  font-size: var(--text-caption);
+  font-weight: 600;
+  margin-left: auto;
+}
+
+/* Registry Box */
+.registryBox {
+  grid-area: registry;
+}
+
+.registryBox p {
+  font-size: var(--text-body);
+  color: var(--muted-text);
+  line-height: 1.6;
+  margin-bottom: var(--s5);
+}
+
+.registryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  background: var(--primary);
+  color: var(--primary-on);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-xl);
+  padding: var(--s3) var(--s5);
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--soft-shadow);
+  transition: all 120ms ease-out;
+  min-height: 44px;
+}
+
+.registryLink:hover {
+  background: var(--pine);
+  transform: translateY(-2px);
+  box-shadow: var(--elevated-shadow);
+}
+
+.registryLink:active {
+  transform: translateY(0);
+}
+
+.externalIcon {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* Guidelines Box */
+.guidelinesBox {
+  grid-area: guidelines;
+}
+
+.guidelinesContent {
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+
+.guidelinesContent p {
+  color: var(--ink);
+  margin-bottom: var(--s4);
+}
+
+.guidelinesContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s5) 0;
+}
+
+.guidelinesContent li {
+  position: relative;
+  padding-left: var(--s5);
+  margin-bottom: var(--s2);
+  color: var(--muted-text);
+}
+
+.guidelinesContent li::before {
+  content: '🌿';
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Progress Box */
+.progressBox {
+  grid-area: progress;
+}
+
+.itemsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s4);
+}
+
+.progressItem {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--s4);
+  transition: all 120ms ease-out;
+}
+
+.progressItem:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--soft-shadow);
+}
+
+.progressItem.updating {
+  background: var(--canopy-fade);
+  border-color: var(--success);
+  animation: updatePulse 0.5s ease-out;
+}
+
+@keyframes updatePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  margin-bottom: var(--s3);
+}
+
+.itemIcon {
+  font-size: 20px;
+}
+
+.itemName {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.progressInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+
+.counts {
+  display: flex;
+  align-items: center;
+  gap: var(--s1);
+  min-width: 60px;
+}
+
+.currentCount {
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.currentCount.editable {
+  cursor: pointer;
+  padding: var(--s1);
+  border-radius: var(--radius-sm);
+  transition: background 120ms ease-out;
+}
+
+.currentCount.editable:hover {
+  background: rgba(var(--primary), 0.1);
+}
+
+.targetCount {
+  font-size: var(--text-body);
+  color: var(--muted-text);
+}
+
+.countInput {
+  background: var(--bg-primary);
+  border: 1.5px solid var(--info);
+  border-radius: var(--radius-sm);
+  padding: var(--s1);
+  font-size: var(--text-body);
+  font-weight: 600;
+  color: var(--primary);
+  width: 40px;
+  text-align: center;
+}
+
+.countInput:focus {
+  outline: 3px dotted var(--info);
+  outline-offset: 2px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: var(--bg-primary);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  transition: width 300ms ease-out;
+  position: relative;
+}
+
+.progressFill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.percentage {
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--muted-text);
+  min-width: 35px;
+  text-align: right;
+}
+
+/* Loading States */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s4);
+}
+
+.loadingSkeleton {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  height: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.loadingSkeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* Favorites Box */
+.favoritesBox {
+  grid-area: favorites;
+}
+
+.favoritesIntro {
+  font-size: var(--text-body);
+  color: var(--muted-text);
+  line-height: 1.6;
+  margin-bottom: var(--s5);
+}
+
+.favoritesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s5);
+}
+
+.parentSection {
+  background: var(--parchment);
+  border: 1.5px solid var(--cocoa-outline);
+  border-radius: var(--radius-lg);
+  padding: var(--s4);
+}
+
+.parentName {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: var(--s4);
+}
+
+.parentIcon {
+  font-size: 18px;
+}
+
+.favoriteItem {
+  margin-bottom: var(--s3);
+}
+
+.favoriteCategory {
+  display: block;
+  font-size: var(--text-caption);
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--s1);
+}
+
+.favoriteValue {
+  display: block;
+  font-size: var(--text-body);
+  color: var(--ink);
+  font-weight: 400;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .bentoGrid {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas: 
+      "registry registry registry guidelines guidelines guidelines"
+      "progress progress progress progress progress progress"
+      "favorites favorites favorites favorites favorites favorites";
+  }
+  
+  .favoritesGrid {
+    grid-template-columns: 1fr;
+    gap: var(--s4);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--s3);
+  }
+  
+  .bentoGrid {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "registry"
+      "guidelines" 
+      "progress"
+      "favorites";
+    gap: var(--s4);
+  }
+  
+  .bentoBox {
+    padding: var(--s5);
+  }
+  
+  .pageHeader h1 {
+    font-size: var(--text-h2);
+  }
+  
+  .boxHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s2);
+  }
+  
+  .boxHeader h2 {
+    font-size: var(--text-h3);
+  }
+  
+  .adminBadge {
+    align-self: flex-end;
+    margin-left: 0;
+    margin-top: -var(--s6);
+  }
+  
+  .progressInfo {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--s2);
+  }
+  
+  .counts {
+    justify-content: space-between;
+  }
+  
+  .percentage {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .bentoBox {
+    padding: var(--s4);
+  }
+  
+  .pageHeader {
+    margin-bottom: var(--s6);
+  }
+  
+  .itemHeader {
+    gap: var(--s2);
+  }
+  
+  .itemIcon {
+    font-size: 18px;
+  }
+  
+  .itemName {
+    font-size: var(--text-caption);
+  }
+}
